@@ -1,17 +1,15 @@
 ##### Load packs and read in data #####
-library(tidyverse)
-library(readr)
-library(fs)
-library(caret)
+require(tidyverse)
+require(caret)
 
 setwd("~/05. Scripts/06. Fantasy Football/data/")
 files <- list.files(path = getwd(), pattern = "[0-9].csv")
 main <- data.frame()
 
 for (i in files) {
-  df <- read.csv(i)
+  df <- read.csv(i) %>% 
+    mutate(Year = substr(i, 1, 4))
   df$Tgt <- NULL
-  df$Year <- rep(substr(files[i], start = 1, 4), nrow(df))
   main <- rbind(main, df)
 }
 
