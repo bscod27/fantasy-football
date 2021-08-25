@@ -118,7 +118,7 @@ test <- model_dat[-index, ]
 # set CV methodology (exception being random forest)
 kfold <- trainControl(method = "repeatedcv", number = 10, repeats = 5)
 
-# least squares
+# OLS
 ols <- train(
   ppg ~ ., 
   data = train,
@@ -131,7 +131,7 @@ print(ols)
 ols_lm <- lm(ppg ~ ., data = train)
 plot(ols_lm)
 
-# k-nearest neighbors
+# KNN
 knn <- train(
   ppg ~ ., 
   data = train,
@@ -157,7 +157,7 @@ mars <- train(
 
 print(mars)
 
-# elastic net
+# ENET
 enet <- train(
   ppg ~ .,
   data = train, 
@@ -169,6 +169,8 @@ enet <- train(
 
 print(enet)
 
+
+# RF
 rf <- train(
   ppg ~ .,
   data = train,
